@@ -23,9 +23,7 @@ function App() {
   const startProcess = async () => {
     setShowModal(true);
     for (let i = 1; i <= userCount; i++) {
-      let res = await axios.post("http://localhost:8082/commit", {
-        delay: 30,
-      });
+      await axios.get("http://localhost:8082/commit");
       setNum(i);
     }
   };
@@ -67,13 +65,13 @@ function App() {
               >
                 Start
               </Button>
-              <Button
+              {/* <Button
                 onClick={() => {
                   console.log(num);
                 }}
               >
                 details
-              </Button>
+              </Button> */}
             </Form>
           </Col>
         </Row>

@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
 
-app.post("/commit", async (req, res) => {
+app.get("/commit", async (req, res) => {
   console.log("Got a new commit");
 
   var ans = "";
