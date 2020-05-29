@@ -22,9 +22,15 @@ function App() {
   const startProcess = () => {
     console.log("start");
     setShowModal(true);
-    axios.get("http://localhost:8082/commit").then((res) => {
-      setResponseData(responseData + res.data);
-    });
+
+    var count = 0;
+
+    while (count < userCount) {
+      axios.get("http://localhost:8082/commit").then((res) => {
+        setResponseData(responseData + res.data);
+      });
+      count++;
+    }
   };
 
   return (
@@ -67,7 +73,7 @@ function App() {
             </Form>
           </Col>
         </Row>
-        <StatusModal visibility={showModal} progress={50} data={responseData}/>
+        <StatusModal visibility={showModal} progress={50} data={responseData} />
       </Container>
     </html>
   );
