@@ -9,7 +9,16 @@ function Header(props) {
       </Modal.Header>
 
       <Modal.Body>
-        <ProgressBar animated variant="success" now={Math.round((props.count/props.userCount)*100)} />
+        <p className="sub-heading">
+          Progress : {Math.round((props.count / props.userCount) * 100)}%...(
+          {props.count}/{props.userCount})
+        </p>
+        <ProgressBar
+          animated
+          variant="success"
+          now={Math.round((props.count / props.userCount) * 100)}
+        />
+        <p className="sub-heading">Data :</p>
         <pre>{props.data}</pre>
       </Modal.Body>
 
