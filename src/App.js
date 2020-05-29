@@ -28,7 +28,6 @@ function App() {
     setShowModal(true);
     for (let i = 1; i <= userCount; i++) {
       let res = await axios.post("http://localhost:8082/commit", {
-        count: userCount,
         delay: 30,
       });
       setNum(i);
@@ -88,6 +87,7 @@ function App() {
           userCount={userCount}
           count={num}
           data={responseData}
+          hideModal={()=>setShowModal(false)}
         />
       </Container>
     </html>

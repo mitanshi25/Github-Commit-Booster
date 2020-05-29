@@ -11,9 +11,6 @@ app.use(express.json());
 app.use(bodyParser.json());
 
 app.post("/commit", async (req, res) => {
-  // setTimeout(() => {
-  //   res.send("got it")
-  // }, 3000);
   console.log("Got a new commit");
 
   var ans = "";
@@ -29,7 +26,7 @@ app.post("/commit", async (req, res) => {
   setTimeout(() => {
     fs.readFile("data.txt", (e, data) => {
       console.log(data.toString());
-      ans = ans + data.toString();
+      ans = ans + "\n" + data.toString();
     });
   }, 2000);
 
@@ -40,19 +37,18 @@ app.post("/commit", async (req, res) => {
   setTimeout(() => {
     var result = execSync(`git commit -m "this is ${rand}th commit`);
     console.log(result.toString());
-    ans = ans + result.toString();
+    ans = ans + "\n" + result.toString();
   }, 5000);
 
   setTimeout(() => {
     var result = execSync(`git push origin master`);
     console.log(result.toString());
-    ans = ans + result.toString();
+    ans = ans + "\n" + result.toString();
   }, 8000);
 
   setTimeout(() => {
     res.send(ans);
   }, 12000);
-
 });
 
 app.listen(8082, () => console.log("server listening on port 8082"));

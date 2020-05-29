@@ -18,14 +18,32 @@ function Header(props) {
         <ProgressBar
           animated
           variant="success"
-          now={props.count===0?3:Math.round((props.count / props.userCount) * 100)}
+          now={
+            props.count === 0
+              ? 3
+              : Math.round((props.count / props.userCount) * 100)
+          }
         />
         <p className="sub-heading">Data :</p>
         <pre>{props.data}</pre>
       </Modal.Body>
 
       <Modal.Footer>
-        <Button variant="danger">Stop</Button>
+        <Button block
+          variant="danger"
+          style={{ display: props.count < props.userCount ? "block" : "none" }}
+        >
+          Stop
+        </Button>
+        <Button block
+          variant="info"
+          onClick={() => props.hideModal()}
+          style={{
+            display: props.count === props.userCount ? "block" : "none",
+          }}
+        >
+          Close
+        </Button>
       </Modal.Footer>
     </Modal>
   );
