@@ -23,7 +23,7 @@ function App() {
     console.log("start");
     setShowModal(true);
     axios.get("http://localhost:8082/commit").then((res) => {
-      setResponseData(responseData + res);
+      setResponseData(responseData + res.data);
     });
   };
 
