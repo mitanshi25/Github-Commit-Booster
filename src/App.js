@@ -32,7 +32,8 @@ function App() {
       });
       setNum(i);
       let str=responseData;
-      setResponseData(str+res.data);
+      str=str+res.data;
+      setResponseData(str);
     }
   };
 
