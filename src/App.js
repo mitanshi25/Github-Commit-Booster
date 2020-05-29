@@ -16,22 +16,16 @@ import StatusModal from "./StatusModal";
 
 function App() {
   const [userCount, setUserCout] = useState(1);
+  const [count, setCount] = useState(0);
   const [responseData, setResponseData] = useState("");
   const [showModal, setShowModal] = useState(false);
 
   const startProcess = async () => {
-    console.log("start");
     setShowModal(true);
-
-    var count = 0;
-
     while (count < userCount) {
-      let res=await axios.get("http://localhost:8082/commit");
-      setResponseData(responseData+res.data);
-      // axios.get("http://localhost:8082/commit").then((res) => {
-      //   setResponseData(responseData + res.data);
-      // });
-      count++;
+      let res = await axios.get("http://localhost:8082/commit");
+      setResponseData(responseData + res.data);
+      setCount(count + 1);
     }
   };
 
@@ -75,7 +69,12 @@ function App() {
             </Form>
           </Col>
         </Row>
-        <StatusModal visibility={showModal} progress={50} data={responseData} />
+        <StatusModal
+          visibility={showModal}
+          userCount={userCount}
+          count={count}
+          data={responseData}
+        />
       </Container>
     </html>
   );
