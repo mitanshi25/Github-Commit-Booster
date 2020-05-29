@@ -20,10 +20,6 @@ function App() {
   const [responseData, setResponseData] = useState("");
   const [showModal, setShowModal] = useState(false);
 
-  useEffect(()=>{
-    console.log(responseData);
-  },[responseData]);
-
   const startProcess = async () => {
     setShowModal(true);
     for (let i = 1; i <= userCount; i++) {
@@ -32,7 +28,7 @@ function App() {
       });
       setNum(i);
       let str=responseData;
-      str=str+res.data;
+      str=str+"\nCommit success";
       setResponseData(str);
     }
   };

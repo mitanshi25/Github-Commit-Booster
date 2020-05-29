@@ -39,7 +39,7 @@ function Header(props) {
           variant="info"
           onClick={() => props.hideModal()}
           style={{
-            display: props.count === props.userCount ? "block" : "none",
+            // display: props.count === props.userCount ? "block" : "none",
           }}
         >
           Close
