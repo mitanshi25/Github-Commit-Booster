@@ -15,21 +15,14 @@ import Header from "./Header";
 import StatusModal from "./StatusModal";
 
 function App() {
-  const [userCount, setUserCout] = useState(1);
-  const [count, setCount] = useState(0);
+  const [userCount, setUserCount] = useState(1);
+  const [num, setNum] = useState(1);
   const [responseData, setResponseData] = useState("");
   const [showModal, setShowModal] = useState(false);
 
-  const startProcess = async () => {
+  const startProcess = () => {
     setShowModal(true);
-    while (count < userCount) {
-      let res = await axios.get("http://localhost:8082/commit");
-      res = res.data;
-      let str = responseData;
-      str = str + res;
-      setResponseData(str);
-      setCount(count + 1);
-    }
+    axios.post("http://localhost:8082/commit", { count: userCount, delay: 30 });
   };
 
   return (
@@ -48,7 +41,7 @@ function App() {
                   min="1"
                   value={userCount}
                   onChange={(e) => {
-                    setUserCout(e.target.value);
+                    setUserCount(e.target.value);
                   }}
                 />
                 <Alert variant="primary" className="mt-3">
@@ -75,7 +68,7 @@ function App() {
         <StatusModal
           visibility={showModal}
           userCount={userCount}
-          count={count}
+          count={num}
           data={responseData}
         />
       </Container>
