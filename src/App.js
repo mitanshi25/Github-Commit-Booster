@@ -26,7 +26,7 @@ function App() {
     var count = 0;
 
     while (count < userCount) {
-      let res=axios.get("http://localhost:8082/commit");
+      let res=await axios.get("http://localhost:8082/commit");
       setResponseData(responseData+res.data);
       // axios.get("http://localhost:8082/commit").then((res) => {
       //   setResponseData(responseData + res.data);
