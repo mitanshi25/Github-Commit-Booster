@@ -24,8 +24,6 @@ function Header(props) {
               : Math.round((props.count / props.userCount) * 100)
           }
         />
-        <p className="sub-heading">Data :</p>
-        <pre>{props.data}</pre>
       </Modal.Body>
 
       <Modal.Footer>
@@ -39,7 +37,7 @@ function Header(props) {
           variant="info"
           onClick={() => props.hideModal()}
           style={{
-            // display: props.count === props.userCount ? "block" : "none",
+            display: props.count === props.userCount ? "block" : "none",
           }}
         >
           Close

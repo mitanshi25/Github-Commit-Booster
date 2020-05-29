@@ -27,9 +27,6 @@ function App() {
         delay: 30,
       });
       setNum(i);
-      let str=responseData;
-      str=str+"\nCommit success";
-      setResponseData(str);
     }
   };
 
