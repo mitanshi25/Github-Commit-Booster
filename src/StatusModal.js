@@ -13,7 +13,7 @@ function Header(props) {
   }, [props.count]);
 
   return (
-    <Modal show={props.visibility} size="lg" centered onHide={()=>props.hideModal()}>
+    <Modal show={props.visibility} size="lg" centered >
       <Modal.Header>
         <Modal.Title>Status</Modal.Title>
       </Modal.Header>
