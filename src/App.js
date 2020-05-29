@@ -12,17 +12,21 @@ import {
 } from "react-bootstrap";
 import axios from "axios";
 import Header from "./Header";
+import StatusModal from "./StatusModal";
 
 function App() {
   const [userCount, setUserCout] = useState(1);
+  const [responseData, setResponseData] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
-  const startProcess=()=>{
+  const startProcess = () => {
     console.log("start");
-    axios.get("http://localhost:8082/commit").then((res)=>{
-      console.log(res);
-    })
-  }
-  
+    setShowModal(true);
+    axios.get("http://localhost:8082/commit").then((res) => {
+      setResponseData(responseData + res);
+    });
+  };
+
   return (
     <html>
       <Header name="Github Commit Booster" />
@@ -49,7 +53,7 @@ function App() {
               <Button
                 variant="primary"
                 type="submit"
-                onClick={() =>startProcess()}
+                onClick={() => startProcess()}
                 disabled={userCount === 0 || userCount === "" ? true : false}
                 style={{
                   cursor:
@@ -60,10 +64,10 @@ function App() {
               >
                 Start
               </Button>
-              {/* <ProgressBar variant="success" now={40} /> */}
             </Form>
           </Col>
         </Row>
+        <StatusModal visibility={showModal} progress={50} data={responseData}/>
       </Container>
     </html>
   );
