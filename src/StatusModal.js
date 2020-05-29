@@ -1,19 +1,19 @@
-import React,{useEffect,useState} from "react";
+import React, { useEffect, useState } from "react";
 import { Modal, Button, ProgressBar } from "react-bootstrap";
 
 function Header(props) {
-    const [data,setData]=useState("");
+  const [data, setData] = useState("");
 
-    useEffect(()=>{
-        let str="";
-        for(var i=1;i<=props.count;i++){
-            str=str+`commit ${i} success\n`
-        }
-        setData(str);
-    },[props.count])
+  useEffect(() => {
+    let str = "";
+    for (var i = 1; i <= props.count; i++) {
+      str = str + `commit ${i} success\n`;
+    }
+    setData(str);
+  }, [props.count]);
 
   return (
-    <Modal show={props.visibility} size="lg" centered>
+    <Modal show={props.visibility} size="lg" centered onHide={()=>props.hideModal()}>
       <Modal.Header>
         <Modal.Title>Status</Modal.Title>
       </Modal.Header>
@@ -22,9 +22,11 @@ function Header(props) {
         <p className="sub-heading">
           commits : {props.count}/{props.userCount}
         </p>
+        <hr />
         <p className="sub-heading">
           Progress : {Math.round((props.count / props.userCount) * 100)}%
         </p>
+        <hr />
         <ProgressBar
           animated
           variant="success"
@@ -34,9 +36,9 @@ function Header(props) {
               : Math.round((props.count / props.userCount) * 100)
           }
         />
-        <pre>
-            {data}
-        </pre>
+        <hr />
+        <p className="sub-heading">Data :</p>
+        <pre>{data}</pre>
       </Modal.Body>
 
       <Modal.Footer>

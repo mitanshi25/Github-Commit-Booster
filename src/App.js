@@ -17,7 +17,6 @@ import StatusModal from "./StatusModal";
 function App() {
   const [userCount, setUserCount] = useState(1);
   const [num, setNum] = useState(0);
-  const [responseData, setResponseData] = useState("");
   const [showModal, setShowModal] = useState(false);
 
   const startProcess = async () => {
@@ -79,7 +78,6 @@ function App() {
           visibility={showModal}
           userCount={userCount}
           count={num}
-          data={responseData}
           hideModal={()=>setShowModal(false)}
         />
       </Container>
