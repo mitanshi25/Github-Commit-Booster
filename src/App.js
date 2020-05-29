@@ -24,7 +24,10 @@ function App() {
     setShowModal(true);
     while (count < userCount) {
       let res = await axios.get("http://localhost:8082/commit");
-      setResponseData(responseData + res.data);
+      res = res.data;
+      let str = responseData;
+      str = str + res;
+      setResponseData(str);
       setCount(count + 1);
     }
   };
