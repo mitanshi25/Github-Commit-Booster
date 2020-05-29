@@ -10,7 +10,7 @@ app.use(cors());
 app.get("/commit", (req, res) => {
   console.log("Got a new commit");
 
-  var result = "";
+  var ans = "";
 
   var rand = Math.random();
   rand = Math.round(rand * 1000 + 1);
@@ -23,7 +23,7 @@ app.get("/commit", (req, res) => {
   setTimeout(() => {
     fs.readFile("data.txt", (e, data) => {
       console.log(data.toString());
-      result = result + data.toString();
+      ans = ans + data.toString();
     });
   }, 2000);
 
@@ -34,17 +34,17 @@ app.get("/commit", (req, res) => {
   setTimeout(() => {
     var result = execSync(`git commit -m "this is ${rand}th commit`);
     console.log(result.toString());
-    result = result + result.toString();
+    ans = ans + result.toString();
   }, 5000);
 
   setTimeout(() => {
     var result = execSync(`git push origin master`);
     console.log(result.toString());
-    result = result + result.toString();
+    ans = ans + result.toString();
   }, 8000);
 
   setTimeout(() => {
-    res.send(result);
+    res.send(ans);
   }, 12000);
 });
 
