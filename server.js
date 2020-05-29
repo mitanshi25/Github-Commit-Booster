@@ -11,13 +11,9 @@ app.use(express.json());
 app.use(bodyParser.json());
 
 app.post("/commit", async (req, res) => {
-  await console.log(req.body);
-  await execSync(`git add .`);
-  var result = await execSync(`git commit -m "this is 45th commit`);
-  await console.log(result.toString());
-  var result = await execSync(`git push origin master`);
-
-  await console.log(result.toString());
+setTimeout(() => {
+  res.send("got it")
+}, 3000);
   // setTimeout(() => {
   //   console.log("Got a new commit");
 

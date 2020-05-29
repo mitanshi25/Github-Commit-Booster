@@ -20,9 +20,13 @@ function App() {
   const [responseData, setResponseData] = useState("");
   const [showModal, setShowModal] = useState(false);
 
-  const startProcess = () => {
-    setShowModal(true);
-    axios.post("http://localhost:8082/commit", { count: userCount, delay: 30 });
+  const startProcess = async () => {
+    // setShowModal(true);
+    // axios.post("http://localhost:8082/commit", { count: userCount, delay: 30 });
+    for(let i=0;i<userCount;i++){
+      let res=await axios.post("http://localhost:8082/commit", { count: userCount, delay: 30 });
+      console.log(res.data);
+    }
   };
 
   return (
