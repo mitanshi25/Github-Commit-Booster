@@ -18,7 +18,9 @@ function App() {
 
   const startProcess=()=>{
     console.log("start");
-    axios.get("http://localhost:8082/commit");
+    axios.get("http://localhost:8082/commit").then((res)=>{
+      console.log(res);
+    })
   }
   
   return (
