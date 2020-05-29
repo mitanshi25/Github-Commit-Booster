@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./style.css";
 import {
   Button,
@@ -16,15 +16,22 @@ import StatusModal from "./StatusModal";
 
 function App() {
   const [userCount, setUserCount] = useState(1);
-  const [num, setNum] = useState(1);
+  const [num, setNum] = useState(0);
   const [responseData, setResponseData] = useState("");
   const [showModal, setShowModal] = useState(false);
 
+  // useEffect(()=>{
+  //   console.log(num)
+  // },[num]);
+
   const startProcess = async () => {
-    // setShowModal(true);
-    // axios.post("http://localhost:8082/commit", { count: userCount, delay: 30 });
-    for(let i=0;i<userCount;i++){
-      let res=await axios.post("http://localhost:8082/commit", { count: userCount, delay: 30 });
+    setShowModal(true);
+    for (let i = 1; i <= userCount; i++) {
+      let res = await axios.post("http://localhost:8082/commit", {
+        count: userCount,
+        delay: 30,
+      });
+      setNum(i);
       console.log(res.data);
     }
   };
@@ -65,6 +72,13 @@ function App() {
                 }}
               >
                 Start
+              </Button>
+              <Button
+                onClick={() => {
+                  console.log(num);
+                }}
+              >
+                details
               </Button>
             </Form>
           </Col>
