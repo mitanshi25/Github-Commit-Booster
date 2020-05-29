@@ -20,9 +20,9 @@ function App() {
   const [responseData, setResponseData] = useState("");
   const [showModal, setShowModal] = useState(false);
 
-  // useEffect(()=>{
-  //   console.log(num)
-  // },[num]);
+  useEffect(()=>{
+    console.log(responseData);
+  },[responseData]);
 
   const startProcess = async () => {
     setShowModal(true);
@@ -31,7 +31,8 @@ function App() {
         delay: 30,
       });
       setNum(i);
-      console.log(res.data);
+      let str=responseData;
+      setResponseData(str+res.data);
     }
   };
 
