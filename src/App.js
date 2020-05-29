@@ -19,16 +19,18 @@ function App() {
   const [responseData, setResponseData] = useState("");
   const [showModal, setShowModal] = useState(false);
 
-  const startProcess = () => {
+  const startProcess = async () => {
     console.log("start");
     setShowModal(true);
 
     var count = 0;
 
     while (count < userCount) {
-      axios.get("http://localhost:8082/commit").then((res) => {
-        setResponseData(responseData + res.data);
-      });
+      let res=axios.get("http://localhost:8082/commit");
+      setResponseData(responseData+res.data);
+      // axios.get("http://localhost:8082/commit").then((res) => {
+      //   setResponseData(responseData + res.data);
+      // });
       count++;
     }
   };
