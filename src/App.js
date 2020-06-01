@@ -51,7 +51,6 @@ function App() {
               </Form.Group>
               <Button
                 variant="primary"
-                type="submit"
                 onClick={() => startProcess()}
                 disabled={userCount === 0 || userCount === "" ? true : false}
                 style={{
