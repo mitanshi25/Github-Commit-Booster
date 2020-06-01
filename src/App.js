@@ -17,14 +17,11 @@ function App() {
   const [userCount, setUserCount] = useState(1);
   const [num, setNum] = useState(0);
   const [showModal, setShowModal] = useState(false);
-  const [breaker,setBreaker]=useState(false);
+  const [breaker, setBreaker] = useState(false);
 
   const startProcess = async () => {
     setShowModal(true);
     for (let i = 1; i <= userCount; i++) {
-      if(breaker){
-        break;
-      }
       await axios.get("http://localhost:8082/commit").then(
         (response) => {
           console.log(response.data);
@@ -32,6 +29,7 @@ function App() {
         (error) => {
           console.log(error);
           setBreaker(true);
+          setShowModal(false);
         }
       );
       setNum(i);
@@ -74,13 +72,11 @@ function App() {
               >
                 Start
               </Button>
-              {/* <Button
-                onClick={() => {
-                  console.log(num);
-                }}
-              >
-                details
-              </Button> */}
+              <Alert
+                variant="danger"
+                className="mt-3"
+                show={breaker ? true : false}
+              >Network Error! Try Again!</Alert>
             </Form>
           </Col>
         </Row>
