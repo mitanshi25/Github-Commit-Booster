@@ -8,10 +8,9 @@ function Header(props) {
     setStatus("ok");
   }, [props.visibility]);
 
-  useEffect(()=>{
-    if(props.count===props.userCount)
-    setStatus("success");
-  },[props.count]);
+  useEffect(() => {
+    if (props.count === props.userCount) setStatus("success");
+  }, [props.count]);
 
   return (
     <Modal show={props.visibility} size="lg" centered>
@@ -36,14 +35,16 @@ function Header(props) {
               : Math.round((props.count / props.userCount) * 100)
           }
         />
-        <hr/>
+        <hr />
 
         <Alert variant="primary" show={status === "ok" ? true : false}>
-          Commiting...<Spinner animation="grow" size="sm" />
+          Commiting...
+          <Spinner animation="grow" size="sm" />
         </Alert>
 
         <Alert variant="danger" show={status === "aborted" ? true : false}>
-          Aborting please wait...<Spinner animation="grow" size="sm" />
+          Aborting please wait...
+          <Spinner animation="grow" size="sm" />
         </Alert>
 
         <Alert
@@ -52,7 +53,6 @@ function Header(props) {
         >
           Success!
         </Alert>
-
       </Modal.Body>
 
       <Modal.Footer>
@@ -72,7 +72,10 @@ function Header(props) {
         <Button
           block
           variant="info"
-          onClick={() => props.hideModal()}
+          onClick={() => {
+            props.hideModal();
+            window.location.reload(false);
+          }}
           style={{
             display: props.count >= props.userCount ? "block" : "none",
           }}
