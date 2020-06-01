@@ -57,11 +57,9 @@ function Header(props) {
           style={{ display: props.count < props.userCount ? "block" : "none" }}
           onClick={() => {
             setStatus("aborted");
-            props.stopCommits();
             setTimeout(() => {
-              props.hideModal();
               window.location.reload(false);
-            }, 10000);
+            }, 5000);
           }}
         >
           Stop
