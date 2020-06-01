@@ -46,7 +46,7 @@ function App() {
                   }}
                 />
                 <Alert variant="primary" className="mt-3">
-                  Estimated time is <strong>{userCount * 0.5} minutes</strong>!
+                  Estimated time is <strong>{userCount * 0.25} minutes</strong>!
                 </Alert>
               </Form.Group>
               <Button
