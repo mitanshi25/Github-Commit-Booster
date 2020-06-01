@@ -21,14 +21,6 @@ function Header(props) {
         <hr />
         <p className="sub-heading">
           Progress : {Math.round((props.count / props.userCount) * 100)}%
-          <Spinner
-            animation="grow"
-            size="sm"
-            className="ml-3"
-            style={{
-              display: props.count < props.userCount ? "block" : "none",
-            }}
-          />
         </p>
         <ProgressBar
           animated
@@ -39,12 +31,13 @@ function Header(props) {
               : Math.round((props.count / props.userCount) * 100)
           }
         />
+        <hr/>
         <Alert variant="primary" show={status === "ok" ? true : false}>
-          Commiting...
+          Commiting...<Spinner animation="grow" size="sm" />
         </Alert>
         ;
         <Alert variant="danger" show={status === "aborted" ? true : false}>
-          Aborting please wait...
+          Aborting please wait...<Spinner animation="grow" size="sm" />
         </Alert>
         <Alert
           variant="success"
@@ -52,7 +45,6 @@ function Header(props) {
         >
           Success!
         </Alert>
-        <hr />
       </Modal.Body>
 
       <Modal.Footer>
