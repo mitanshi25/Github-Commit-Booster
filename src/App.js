@@ -17,16 +17,21 @@ function App() {
   const [userCount, setUserCount] = useState(1);
   const [num, setNum] = useState(0);
   const [showModal, setShowModal] = useState(false);
+  const [breaker,setBreaker]=useState(false);
 
   const startProcess = async () => {
     setShowModal(true);
     for (let i = 1; i <= userCount; i++) {
+      if(breaker){
+        break;
+      }
       await axios.get("http://localhost:8082/commit").then(
         (response) => {
           console.log(response.data);
         },
         (error) => {
           console.log(error);
+          setBreaker(true);
         }
       );
       setNum(i);
