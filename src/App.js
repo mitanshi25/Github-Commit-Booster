@@ -17,10 +17,15 @@ function App() {
   const [userCount, setUserCount] = useState(1);
   const [num, setNum] = useState(0);
   const [showModal, setShowModal] = useState(false);
+  const [stopper,setStopper]=useState(false);
 
   const startProcess = async () => {
+    setStopper(false);
     setShowModal(true);
     for (let i = 1; i <= userCount; i++) {
+      if(stopper){
+        break;
+      }
       await axios.get("http://localhost:8082/commit");
       setNum(i);
     }
@@ -31,7 +36,7 @@ function App() {
       <Header name="Github Commit Booster" />
       <Container>
         <Row>
-          <Col className="text-center main-form" xs={{ span: 6, offset: 3 }}>
+          <Col className="text-center main-form" xs={{ span: 4, offset: 4 }}>
             <Form>
               <Form.Group>
                 <Form.Label className="sub-heading">
@@ -76,6 +81,7 @@ function App() {
           visibility={showModal}
           userCount={userCount}
           count={num}
+          stopCommits={()=>setStopper(true)}
           hideModal={()=>setShowModal(false)}
         />
       </Container>

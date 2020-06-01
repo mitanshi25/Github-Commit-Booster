@@ -1,19 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Button, ProgressBar } from "react-bootstrap";
+import { Modal, Button, ProgressBar, Spinner, Alert } from "react-bootstrap";
 
 function Header(props) {
-  // const [data, setData] = useState("");
+  const [status, setStatus] = useState("ok"); //ok,aborted,error.
 
-  // useEffect(() => {
-  //   let str = "";
-  //   for (var i = 1; i <= props.count; i++) {
-  //     str = str + `commit ${i} success\n`;
-  //   }
-  //   setData(str);
-  // }, [props.count]);
+  useEffect(() => {
+    setStatus("ok");
+  }, [props.visibility]);
 
   return (
-    <Modal show={props.visibility} size="lg" centered >
+    <Modal show={props.visibility} size="lg" centered>
       <Modal.Header>
         <Modal.Title>Status</Modal.Title>
       </Modal.Header>
@@ -25,8 +21,15 @@ function Header(props) {
         <hr />
         <p className="sub-heading">
           Progress : {Math.round((props.count / props.userCount) * 100)}%
+          <Spinner
+            animation="grow"
+            size="sm"
+            className="ml-3"
+            style={{
+              display: props.count < props.userCount ? "block" : "none",
+            }}
+          />
         </p>
-        <hr />
         <ProgressBar
           animated
           variant="success"
@@ -36,9 +39,20 @@ function Header(props) {
               : Math.round((props.count / props.userCount) * 100)
           }
         />
-        {/* <hr /> */}
-        {/* <p className="sub-heading">Data :</p> */}
-        {/* <pre>{data}</pre> */}
+        <Alert variant="primary" show={status === "ok" ? true : false}>
+          Commiting...
+        </Alert>
+        ;
+        <Alert variant="danger" show={status === "aborted" ? true : false}>
+          Aborting please wait...
+        </Alert>
+        <Alert
+          variant="success"
+          show={props.count >= props.userCount ? true : false}
+        >
+          Success!
+        </Alert>
+        <hr />
       </Modal.Body>
 
       <Modal.Footer>
@@ -46,6 +60,12 @@ function Header(props) {
           block
           variant="danger"
           style={{ display: props.count < props.userCount ? "block" : "none" }}
+          onClick={() => {
+            props.stopCommits();
+            setTimeout(() => {
+              props.hideModal();
+            }, 10000);
+          }}
         >
           Stop
         </Button>
