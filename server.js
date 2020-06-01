@@ -39,11 +39,11 @@ app.get("/commit",(req, res) => {
   setTimeout(() => {
     var result = execSync(`git push origin master`);
     console.log(result.toString());
-  }, 3500);
+  }, 2500);
 
   setTimeout(() => {
     res.send("ok");
-  }, 12000);
+  }, 8000);
 });
 
 app.listen(8082, () => console.log("server listening on port 8082"));
