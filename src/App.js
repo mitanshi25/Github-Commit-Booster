@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./style.css";
 import {
   Button,
@@ -30,6 +30,9 @@ function App() {
           console.log(error);
           setBreaker(true);
           setShowModal(false);
+          setTimeout(() => {
+            window.location.reload(false);
+          }, 10000);
         }
       );
       setNum(i);
@@ -76,7 +79,11 @@ function App() {
                 variant="danger"
                 className="mt-3"
                 show={breaker ? true : false}
-              >Network Error! Try Again!</Alert>
+              >
+                <p>Network Error! Try Again!</p>
+                <p>Reloading please wait!</p>
+                <p>Try Restarting Node Server!</p>
+              </Alert>
             </Form>
           </Col>
         </Row>

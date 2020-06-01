@@ -10,8 +10,8 @@ function Header(props) {
 
   useEffect(() => {
     if (props.count === props.userCount) setStatus("success");
-    
-  }, [props.count]);
+  // eslint-disable-next-line
+  }, [props.count]); 
 
   return (
     <Modal show={props.visibility} size="lg" centered>
