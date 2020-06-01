@@ -60,6 +60,7 @@ function Header(props) {
             props.stopCommits();
             setTimeout(() => {
               props.hideModal();
+              window.location.reload(false);
             }, 10000);
           }}
         >
