@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 import { Modal, Button, ProgressBar } from "react-bootstrap";
 
 function Header(props) {
-  const [data, setData] = useState("");
+  // const [data, setData] = useState("");
 
-  useEffect(() => {
-    let str = "";
-    for (var i = 1; i <= props.count; i++) {
-      str = str + `commit ${i} success\n`;
-    }
-    setData(str);
-  }, [props.count]);
+  // useEffect(() => {
+  //   let str = "";
+  //   for (var i = 1; i <= props.count; i++) {
+  //     str = str + `commit ${i} success\n`;
+  //   }
+  //   setData(str);
+  // }, [props.count]);
 
   return (
     <Modal show={props.visibility} size="lg" centered >
@@ -36,9 +36,9 @@ function Header(props) {
               : Math.round((props.count / props.userCount) * 100)
           }
         />
-        <hr />
-        <p className="sub-heading">Data :</p>
-        <pre>{data}</pre>
+        {/* <hr /> */}
+        {/* <p className="sub-heading">Data :</p> */}
+        {/* <pre>{data}</pre> */}
       </Modal.Body>
 
       <Modal.Footer>
