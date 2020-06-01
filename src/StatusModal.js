@@ -10,6 +10,7 @@ function Header(props) {
 
   useEffect(() => {
     if (props.count === props.userCount) setStatus("success");
+    
   }, [props.count]);
 
   return (

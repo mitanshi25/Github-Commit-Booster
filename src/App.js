@@ -21,7 +21,9 @@ function App() {
   const startProcess = async () => {
     setShowModal(true);
     for (let i = 1; i <= userCount; i++) {
-      await axios.get("http://localhost:8082/commit");
+      await axios.get("http://localhost:8082/commit").then((response) => {
+        console.log(response.data);
+      });
       setNum(i);
     }
   };
@@ -76,7 +78,7 @@ function App() {
           visibility={showModal}
           userCount={userCount}
           count={num}
-          hideModal={()=>setShowModal(false)}
+          hideModal={() => setShowModal(false)}
         />
       </Container>
     </html>
