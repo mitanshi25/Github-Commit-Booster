@@ -21,9 +21,14 @@ function App() {
   const startProcess = async () => {
     setShowModal(true);
     for (let i = 1; i <= userCount; i++) {
-      await axios.get("http://localhost:8082/commit").then((response) => {
-        console.log(response.data);
-      });
+      await axios.get("http://localhost:8082/commit").then(
+        (response) => {
+          console.log(response.data);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
       setNum(i);
     }
   };
