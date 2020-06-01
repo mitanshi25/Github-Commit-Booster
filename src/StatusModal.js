@@ -8,6 +8,11 @@ function Header(props) {
     setStatus("ok");
   }, [props.visibility]);
 
+  useEffect(()=>{
+    if(props.count===props.userCount)
+    setStatus("success");
+  },[props.count]);
+
   return (
     <Modal show={props.visibility} size="lg" centered>
       <Modal.Header>
@@ -27,7 +32,7 @@ function Header(props) {
           variant="success"
           now={
             props.count === 0
-              ? 3
+              ? 1
               : Math.round((props.count / props.userCount) * 100)
           }
         />
