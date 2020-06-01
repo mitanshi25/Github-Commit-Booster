@@ -32,19 +32,22 @@ function Header(props) {
           }
         />
         <hr/>
+
         <Alert variant="primary" show={status === "ok" ? true : false}>
           Commiting...<Spinner animation="grow" size="sm" />
         </Alert>
-        ;
+
         <Alert variant="danger" show={status === "aborted" ? true : false}>
           Aborting please wait...<Spinner animation="grow" size="sm" />
         </Alert>
+
         <Alert
           variant="success"
           show={props.count >= props.userCount ? true : false}
         >
           Success!
         </Alert>
+
       </Modal.Body>
 
       <Modal.Footer>
@@ -53,6 +56,7 @@ function Header(props) {
           variant="danger"
           style={{ display: props.count < props.userCount ? "block" : "none" }}
           onClick={() => {
+            setStatus("aborted");
             props.stopCommits();
             setTimeout(() => {
               props.hideModal();
