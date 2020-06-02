@@ -12,8 +12,13 @@ Now, we have to make a github ssh key pair:
 This tutorial can be used to do that
 https://www.youtube.com/watch?v=WgZIv5HI44o
 
-Steps to Run Project:
+Steps to Run Node Server at 8082 Port:
 1. Just open command prompt in the project folder.
 2. Run command `node server.js`
   Now your project must be up and running and boosting your github commits.
+  
+Steps to open the portal:
+1. Open another command prompt and inn the project folder.
+2. Run command `npm start`
+  This should open the localhost:8082 in your default browser.
 
