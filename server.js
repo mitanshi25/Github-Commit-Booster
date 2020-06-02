@@ -10,8 +10,10 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
 
-app.get("/commit",(req, res) => {
-  console.log("=====================================Got a new commit=========================================");
+app.get("/commit", (req, res) => {
+  console.log(
+    "=====================================Got a new commit========================================="
+  );
 
   var rand = Math.random();
   rand = Math.round(rand * 1000 + 1);
@@ -21,28 +23,26 @@ app.get("/commit",(req, res) => {
     fs.writeFileSync("data.txt", str, "utf8");
   }, 100);
 
-  // setTimeout(() => {
-  //   fs.readFile("data.txt", (data) => {
-  //     console.log(data.toString());
-  //   });
-  // }, 2000);
-
   setTimeout(() => {
     execSync(`git add .`);
+    console.log("Files added to staging area!");
   }, 500);
 
   setTimeout(() => {
     var result = execSync(`git commit -m "this is ${rand}th commit`);
     console.log(result.toString());
+    console.log("Files commited to local repo.");
   }, 1500);
 
   setTimeout(() => {
     var result = execSync(`git push origin master`);
     console.log(result.toString());
+    console.log("Files pushed to remote repo!");
   }, 2500);
 
   setTimeout(() => {
     res.send("ok");
+    console.log("sending back resposne...");
   }, 8000);
 });
 
