@@ -29,7 +29,7 @@ app.get("/commit", (req, res) => {
   }, 500);
 
   setTimeout(() => {
-    var result = execSync(`git commit -m "this is ${rand}th commit`);
+    var result = execSync(`git commit -m "this is ${rand}th commit"`)
     console.log(result.toString());
     console.log("Files commited to local repo.");
   }, 1500);
